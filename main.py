@@ -4,6 +4,9 @@ Created on Fri Jul 22 16:59:38 2016
 
 """
 
+# Dot matrix font for reference:
+# https://www.colourbox.com/image/3d-dot-matrix-font-49-characters-with-real-reflection-symbol-size-500x500pt-image-2340783
+
 from github3 import login # docs here: http://github3py.readthedocs.io/en/latest/examples/github.html
 import csv
 import os
