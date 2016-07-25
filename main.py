@@ -4,7 +4,7 @@ Created on Fri Jul 22 16:59:38 2016
 
 """
 
-import github3 # docs here: http://github3py.readthedocs.io/en/latest/examples/github.html
+from github3 import login # docs here: http://github3py.readthedocs.io/en/latest/examples/github.html
 import csv
 import os
 
@@ -16,18 +16,24 @@ with open('auth/auth.csv', newline='') as f:
     for row in text:
         user_name, password = row
 
-g = github3.login(user_name, password)
+me = login(user_name, password)
 
-for repo in g.get_user().get_repos():
-    print(repo.name)
+# This is helpful here:
+# http://stackoverflow.com/questions/36380033/invalidschema-when-attempting-to-create-file-with-github3-py
 
-help(Github)
+repo = me.repository('bryancshepherd', 'GitHubTyper')
 
-g.get_rate_limit().rate.remaining
+# Create a file
+data = 'testing file 1'
+repo.create_file(path = 'files/dotfile.txt',
+                 message = 'Add dot file',
+                 content = data.encode('utf-8'))
 
-help(github)
+# Get the file reference for later use
+file_sha = repo.contents(path = 'files/dotfile.txt').sha
 
+# Delete the file
+repo.delete_file(path = 'files/file1.txt',
+                 message = 'Delete dot file',
+                 sha = file_sha)
 
-g_com = g.Commit()
-
-help(github.GitObject)
