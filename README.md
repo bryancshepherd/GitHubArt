@@ -1,2 +1,1 @@
-# GitTyper
 # GitHubTyper
