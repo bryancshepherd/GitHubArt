@@ -10,6 +10,17 @@ Created on Fri Jul 22 16:59:38 2016
 from github3 import login # docs here: http://github3py.readthedocs.io/en/latest/examples/github.html
 import csv
 import os
+import letters
+import numpy as np
+
+def reorg_letters(org_letter_array):
+    rows = 7
+    cols = len(org_letter_array)/rows
+    
+    temp_array = np.array(org_letter_array)
+    temp_array.shape = (rows, cols)
+
+
 
 os.chdir('/Users/bryanshepherd/Projects/GitHubTyper/')
 
