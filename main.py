@@ -12,6 +12,7 @@ import csv
 import os
 import letters
 import numpy as np
+import time
 
 def reorg_letters(org_letter_array):
     rows = 7
@@ -37,17 +38,20 @@ me = login(user_name, password)
 
 repo = me.repository('bryancshepherd', 'GitHubTyper')
 
-# Create a file
-data = 'testing file 1'
-repo.create_file(path = 'files/dotfile.txt',
-                 message = 'Add dot file',
-                 content = data.encode('utf-8'))
-
-# Get the file reference for later use
-file_sha = repo.contents(path = 'files/dotfile.txt').sha
-
-# Delete the file
-repo.delete_file(path = 'files/file1.txt',
-                 message = 'Delete dot file',
-                 sha = file_sha)
+def do_typing(num_of_commits=20):
+    # Create a file
+    data = 'testing file 1'
+    repo.create_file(path = 'files/dotfile.txt',
+                     message = 'Add dot file',
+                     content = data.encode('utf-8'))
+    
+    # Get the file reference for later use
+    file_sha = repo.contents(path = 'files/dotfile.txt').sha
+    
+    # Delete the file
+    repo.delete_file(path = 'files/file1.txt',
+                     message = 'Delete dot file',
+                     sha = file_sha)
+                     
+    time.sleep(300)
 
