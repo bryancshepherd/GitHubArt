@@ -1,11 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jul 22 16:59:38 2016
-
-"""
-
-import sys
-
 # Dot matrix font for reference:
 # https://www.colourbox.com/image/3d-dot-matrix-font-49-characters-with-real-reflection-symbol-size-500x500pt-image-2340783
 
@@ -13,17 +5,17 @@ import sys
 # http://stackoverflow.com/questions/36380033/invalidschema-when-attempting-to-create-file-with-github3-py
 
 import os
-os.chdir('/Users/bryanshepherd/Projects/GitHubTyper/')
+os.chdir('GitHubTyper/')
 
 # GitHub3.py docs are here:
 # http://github3py.readthedocs.io/en/latest/examples/github.html
 from github3 import login 
 import csv
-import os
 import letters
 import numpy as np
 import time
 import datetime
+import sys
 
 # The letter arrays are manually added to letters.py.
 # It's easier to create them if they are laid out as 
@@ -62,7 +54,7 @@ def github_login():
 # may also require changing the sleep_time
 # so that things still complete in a reasonable
 # amount of time
-def do_typing(num_of_commits=20, sleep_time=300):
+def do_typing(num_of_commits=20, sleep_time=20):
     
     me = github_login()
 
@@ -134,15 +126,12 @@ def typing_controller(args = sys.argv):
     
     dims = mat_phrase.shape
     
-    if (date_diff_int >= (dims[0]*dims[1])):
+    if ((date_diff_int >= (dims[0]*dims[1])) or (date_diff_int < 0)):
+        print('Typing either hasn\'t started or is done')
         return()
     
     if mat_phrase[row, col] == 1:
-        # do_typing()
-        
-        print('1') # Just for testing
-    else: # Just for testing
-        print('0') # Just for testing
+        do_typing()
         
 typing_controller()
 
