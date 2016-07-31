@@ -81,7 +81,6 @@ def do_typing(num_of_commits=20, sleep_time=20):
 def matrixify_phrase(phrase_to_convert):
     for i in range(len(phrase_to_convert)):
         char = phrase_to_convert[i]
-        char = char.upper()
         char_array = letters.letters_dict[char]
         temp_char_mat = reorg_letters(char_array)
         
