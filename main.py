@@ -54,27 +54,28 @@ def github_login():
 # may also require changing the sleep_time
 # so that things still complete in a reasonable
 # amount of time
-def do_typing(num_of_commits=20, sleep_time=20):
+def do_typing(num_of_commits=30, sleep_time=20):
     
     me = github_login()
 
     repo = me.repository('bryancshepherd', 'GitHubTyper')
 
-    # Create a file
-    data = 'typing file'
-    repo.create_file(path = 'files/dotfile.txt',
-                     message = 'Add dot file',
-                     content = data.encode('utf-8'))
-    
-    # Get the file reference for later use
-    file_sha = repo.contents(path = 'files/dotfile.txt').sha
-    
-    # Delete the file
-    repo.delete_file(path = 'files/file1.txt',
-                     message = 'Delete dot file',
-                     sha = file_sha)
-                     
-    time.sleep(sleep_time)
+    for i in range(num_of_commits):
+        # Create a file
+        data = 'typing file'
+        repo.create_file(path = 'files/dotfile.txt',
+                         message = 'Add dot file',
+                         content = data.encode('utf-8'))
+        
+        # Get the file reference for later use
+        file_sha = repo.contents(path = 'files/dotfile.txt').sha
+        
+        # Delete the file
+        repo.delete_file(path = 'files/dotfile.txt',
+                         message = 'Delete dot file',
+                         sha = file_sha)
+                         
+        time.sleep(sleep_time)
 
 # Matrixify the characters in the
 # passed phrase
